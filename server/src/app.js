@@ -1,4 +1,5 @@
 require('dotenv').config('.env')
+const cors = require('cors')
 const express = require('express')
 const app = express()
 
@@ -14,10 +15,13 @@ const jwtCheck = auth({
   tokenSigningAlg: AUTH_SIGNING_ALGO
 })
 
+app.use(cors())
 app.use(jwtCheck)
 
 app.get('/users', (req, res) => {
-  res.send('ACCESS GRANTED')
+  res.json({
+    msg: 'User MetaData here!'
+  })
 })
 
 module.exports = {
