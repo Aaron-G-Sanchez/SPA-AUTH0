@@ -1,3 +1,3 @@
-# React + AUTH0
+# React + Auth0
 
 Demo repo to practive auth0 on the client and server side
