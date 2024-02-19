@@ -11,8 +11,9 @@ root.render(
     clientId="Q4MH68SeRDhPeiD6jjA8I5VAMtX7IB88"
     authorizationParams={{
       redirect_uri: window.location.origin,
-      audience: 'http://localhost:3001',
-      scope: 'read:users'
+      audience: 'http://localhost:3001'
+      // Don't know for sure what scope does but uhhhhh this gets the user data to show
+      // scope: 'read:current_user'
     }}
   >
     <App />

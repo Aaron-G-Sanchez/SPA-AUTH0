@@ -20,7 +20,7 @@ app.use(jwtCheck)
 
 app.get('/users', (req, res) => {
   res.json({
-    msg: 'User MetaData here!'
+    msg: 'Backend was HIT!!'
   })
 })
 
