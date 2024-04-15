@@ -16,11 +16,20 @@ const Profile = () => {
         }
       })
 
+      const customHeaders = {
+        'X-Custom-User-Info': JSON.stringify({
+          email: user.email,
+          nickname: user.nickname,
+          id: user.sub
+        })
+      }
+
       const userTest = `http://localhost:3001/users`
 
       const userTestResponse = await fetch(userTest, {
         headers: {
-          Authorization: `Bearer ${accessToken}`
+          Authorization: `Bearer ${accessToken}`,
+          ...customHeaders
         }
       })
       const body = await userTestResponse.json()

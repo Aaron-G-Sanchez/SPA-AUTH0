@@ -19,6 +19,8 @@ app.use(cors())
 app.use(jwtCheck)
 
 app.get('/users', (req, res) => {
+  console.log(req.headers['x-custom-user-info'])
+
   res.json({
     msg: 'Backend was HIT!!'
   })
