@@ -1,9 +1,17 @@
 require('dotenv').config('.env')
 const cors = require('cors')
 const express = require('express')
-const app = express()
-
+const { createServer } = require('http')
+const { Server } = require('socket.io')
 const { auth } = require('express-oauth2-jwt-bearer')
+
+const app = express()
+const httpServer = createServer(app)
+const io = new Server(httpServer, {
+  cors: {
+    origin: 'http://localhost:5173'
+  }
+})
 
 const { AUTH0_SECRET, AUTH0_AUDIENCE, AUTH0_BASE_URL, AUTH_SIGNING_ALGO } =
   process.env
@@ -26,6 +34,11 @@ app.get('/users', (req, res) => {
   })
 })
 
+io.on('connection', (socket) => {
+  console.log(socket.id)
+  console.log('New connection created')
+})
+
 module.exports = {
-  app
+  httpServer
 }

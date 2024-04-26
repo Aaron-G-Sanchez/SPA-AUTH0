@@ -18,3 +18,21 @@
   justify-content: center;
   gap: 5%;
 }
+
+.socket-demo-container {
+  background-color: ghostwhite;
+  color: #242424;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+}
+
+.connection-controls {
+  display: flex;
+  width: 30%;
+  height: 10%;
+  align-items: center;
+  justify-content: space-evenly;
+}
