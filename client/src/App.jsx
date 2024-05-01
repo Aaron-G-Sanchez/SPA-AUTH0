@@ -1,24 +1,38 @@
 import './App.css'
-import LoginButton from './components/LoginButton'
-import LogoutButton from './components/LogoutButton'
-import Profile from './components/Profile'
-import { SocketDemo } from './components/socket-demo/SocketDemo'
+import { Dash } from './pages/Dash'
+import { Home } from './pages/Home'
+import { Routes, Route } from 'react-router-dom'
+import { Login } from './pages/Login'
+import { ProtectedRoute } from './components/ProtectedRoute'
+import { useAuth0 } from '@auth0/auth0-react'
 
 const App = () => {
+  const { isAuthenticated, isLoading } = useAuth0()
+
+  console.log(isAuthenticated)
+
+  if (isLoading) {
+    return (
+      <>
+        <p>Loading....</p>
+      </>
+    )
+  }
+
   return (
     <>
-      <div className="hello-world">
-        <h1>Hello World</h1>
-        <div className="nav">
-          <LoginButton />
-          <LogoutButton />
-        </div>
-        <div className="profile">
-          <Profile />
-        </div>
-      </div>
-
-      <SocketDemo />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/dash"
+          element={
+            <ProtectedRoute isAuthenticate={isAuthenticated}>
+              <Dash />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route path="/login" element={<Login />}></Route>
+      </Routes>
     </>
   )
 }
